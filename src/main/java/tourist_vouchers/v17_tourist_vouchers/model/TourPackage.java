@@ -3,17 +3,17 @@ package tourist_vouchers.v17_tourist_vouchers.model;
 public class TourPackage {
     private int id;
     private String title;
-    private String description;
+    private String destination;
     private double price;
     private int days;
     private TransportType transport;
     private FoodType foodType;
     private TourType tourType;
 
-    public TourPackage(int id, String title, String description, double price, int days, TransportType transport, FoodType foodType, TourType tourType) {
+    public TourPackage(int id, String title, String destination, double price, int days, TransportType transport, FoodType foodType, TourType tourType) {
         this.id = id;
         this.title = title;
-        this.description = description;
+        this.destination = destination;
         this.price = price;
         this.days = days;
         this.transport = transport;
@@ -35,11 +35,11 @@ public class TourPackage {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDestination() {
+        return destination;
     }
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDestination(String description) {
+        this.destination = description;
     }
 
     public double getPrice() {
@@ -76,4 +76,5 @@ public class TourPackage {
     public void setTourType(TourType tourType) {
         this.tourType = tourType;
     }
+
 }
