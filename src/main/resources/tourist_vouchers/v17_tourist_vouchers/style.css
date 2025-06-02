@@ -1,0 +1,104 @@
+.root {
+    -fx-font-family: 'Arsenal';
+    -fx-font-size: 14px;
+}
+
+/* Загальний фон */
+.anchor-pane {
+    -fx-background-color: linear-gradient(to bottom right, #d0f0f6, #a8d8eb);
+}
+
+/* Стиль для заголовків (Авторизація, Реєстрація) */
+.header-label {
+    -fx-text-fill: #2a7faa;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(42, 127, 170, 0.4), 6, 0.5, 0, 2);
+    -fx-underline: true;
+}
+
+/* Панель логіну/реєстрації */
+.pane {
+    -fx-background-color: rgba(255, 255, 255, 0.85);
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: #86bde5;
+    -fx-border-width: 2;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 15, 0.2, 0, 5);
+}
+
+/* Лейбли */
+.label {
+    -fx-text-fill: #333333;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+/* Текстові поля */
+.text-field, .password-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #b0c4de;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 8;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);
+    -fx-transition: all 0.3s ease;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #5eb8ff;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 120, 215, 0.3), 8, 0, 0, 2);
+}
+
+/* Кнопки */
+.button {
+    -fx-background-color: linear-gradient(to bottom, #5eb8ff, #4aa3e0);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 3);
+    -fx-transition: all 0.3s ease;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #4aa3e0, #3a8ac0);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 8, 0, 0, 4);
+}
+
+.button:pressed {
+    -fx-background-color: #3576b0;
+}
+
+/* ComboBox */
+.combo-box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #b0c4de;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 5;
+    -fx-font-size: 14px;
+}
+
+.combo-box:focused {
+    -fx-border-color: #5eb8ff;
+}
+
+/* TableView */
+.table-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #b0c4de;
+    -fx-border-radius: 10;
+    -fx-padding: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);
+}
+
+.table-column {
+    -fx-alignment: CENTER_LEFT;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}

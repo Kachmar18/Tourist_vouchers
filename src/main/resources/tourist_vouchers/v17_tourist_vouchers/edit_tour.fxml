@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="520.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tourist_vouchers.v17_tourist_vouchers.controller.EditTourController">
+
+    <Label layoutX="321.0" layoutY="24.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Інформація про тур" />
+
+    <TextField fx:id="txtTitle" layoutX="239.0" layoutY="89.0" prefHeight="37.0" prefWidth="178.0" promptText="Назва туру" />
+    <TextField fx:id="txtDestination" layoutX="239.0" layoutY="171.0" prefHeight="37.0" prefWidth="178.0" promptText="Місце призначення" />
+    <TextField fx:id="txtPrice" layoutX="239.0" layoutY="242.0" prefHeight="37.0" prefWidth="178.0" promptText="Ціна" />
+    <TextField fx:id="txtDays" layoutX="239.0" layoutY="318.0" prefHeight="37.0" prefWidth="178.0" promptText="Кількість днів" />
+
+    <ComboBox fx:id="cmbTransportType" layoutX="453.0" layoutY="150.0" prefHeight="42.0" prefWidth="306.0" promptText="Транспорт" />
+    <ComboBox fx:id="cmbFoodType" layoutX="453.0" layoutY="315.0" prefHeight="42.0" prefWidth="306.0" promptText="Харчування" />
+    <ComboBox fx:id="cmbTourType" layoutX="453.0" layoutY="238.0" prefHeight="42.0" prefWidth="306.0" promptText="Тип туру" />
+
+    <HBox layoutX="124.0" layoutY="373.0" spacing="10" />
+     <Button fx:id="btnCancel" layoutX="23.0" layoutY="448.0" onAction="#handleCancel" prefHeight="51.0" prefWidth="262.0" text="Скасувати" />
+     <Button fx:id="btnSave" layoutX="386.0" layoutY="448.0" onAction="#handleSave" prefHeight="51.0" prefWidth="383.0" text="Зберегти" />
+   <Label layoutX="37.0" layoutY="99.0" text="Введіть назву туру" />
+   <Label layoutX="37.0" layoutY="181.0" text="Введіть місце призначення" />
+   <Label layoutX="37.0" layoutY="249.0" text="Введіть ціну, грн" />
+   <Label layoutX="37.0" layoutY="325.0" text="Введіть кількість днів" />
+   <Label layoutX="453.0" layoutY="99.0" text="Оберіть варіанти у списках:" />
+
+</AnchorPane>

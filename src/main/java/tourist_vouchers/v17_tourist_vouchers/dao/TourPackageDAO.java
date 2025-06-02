@@ -91,8 +91,6 @@ public class TourPackageDAO {
         }
     }
 
-
-
     public List<String> getAllDestinations() throws SQLException {
         List<String> destinations = new ArrayList<>();
         String sql = "SELECT DISTINCT destination FROM tour";
