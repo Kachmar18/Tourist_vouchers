@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="520.0" prefWidth="800.0" style="-fx-background-color: #dcf5fb;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tourist_vouchers.v17_tourist_vouchers.controller.LoginController">
-   <Button fx:id="btnInfoApp" layoutX="13.0" layoutY="466.0" mnemonicParsing="false" onAction="#handleInfoApp" text="Про програму" />
+   <Button layoutX="13.0" layoutY="466.0" mnemonicParsing="false" onAction="#handleInfoApp" text="Про програму" />
 
       <Pane fx:id="logInPane" layoutX="-1.0" layoutY="75.0" prefHeight="350.0" prefWidth="800.0">
       <Label layoutX="356.0" layoutY="4.0" styleClass="header-label" text="Авторизація">
@@ -21,7 +21,7 @@
       <PasswordField fx:id="txtPassword" layoutX="399.0" layoutY="138.0" prefHeight="37.0" prefWidth="320.0" />
       <Label layoutX="53.0" layoutY="87.0" prefHeight="30.0" prefWidth="87.0" text="Введіть ім'я" />
       <Label layoutX="53.0" layoutY="146.0" text="Введіть прізвище" />
-      <Button fx:id="btnLogin" layoutX="431.0" layoutY="233.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="57.0" prefWidth="320.0" text="Увійти" />
+      <Button layoutX="431.0" layoutY="233.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="57.0" prefWidth="320.0" text="Увійти" />
       <Button layoutX="41.0" layoutY="233.0" onAction="#switchToSignUpPane" prefHeight="57.0" prefWidth="218.0" text="Зареєструватися" />
    </Pane>
 
@@ -33,10 +33,10 @@
      <TextField fx:id="txtUsernameSignUp" layoutX="415.0" layoutY="76.0" prefHeight="37.0" prefWidth="346.0" />
       <PasswordField fx:id="txtPasswordSignUp" layoutX="415.0" layoutY="194.0" prefHeight="37.0" prefWidth="346.0" />
       <Label layoutX="87.0" layoutY="84.0" text="Введіть ім'я" />
-      <Label layoutX="87.0" layoutY="202.0" text="Введть пароль" />
+      <Label layoutX="87.0" layoutY="202.0" text="Введіть пароль" />
       <Label layoutX="87.0" layoutY="143.0" text="Введіть номер телефону" />
       <TextField fx:id="txtPhone" layoutX="415.0" layoutY="135.0" prefHeight="37.0" prefWidth="346.0" />
-      <Button fx:id="btnCreateAccount" layoutX="413.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleCreateAccount" prefHeight="57.0" prefWidth="358.0" text="Створити акаунт" />
+      <Button layoutX="413.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleCreateAccount" prefHeight="57.0" prefWidth="358.0" text="Створити акаунт" />
       <Button layoutX="50.0" layoutY="269.0" onAction="#switchToLoginPane" prefHeight="57.0" prefWidth="250.0" text="Уже маєш акаунт? Увійти" textAlignment="CENTER" wrapText="true" />
       <VBox alignment="CENTER" layoutX="50" layoutY="80" prefWidth="300" spacing="10" />
    </Pane>

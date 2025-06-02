@@ -24,5 +24,13 @@ public class ClientChoiceService {
             return null;
         }
     }
+
+    public boolean bookTour(int clientId, int tourId) {
+        return dao.updateClientTour(clientId, tourId);
+    }
+
+    public boolean clearBookedTour(int clientId) {
+        return dao.clearClientTour(clientId);
+    }
 }
 

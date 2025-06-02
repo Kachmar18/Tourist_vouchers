@@ -25,6 +25,16 @@ public class TourPackageService {
         }
     }
 
+    public TourPackage getTourById(int id) {
+        try {
+            return tourPackageDAO.getTourById(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
     public List<TourPackage> filterTours(String destination, Double maxPrice, Integer maxDays,
                                          TourType tourType, FoodType foodType, TransportType transportType) {
         return getAllTours().stream()
@@ -54,15 +64,6 @@ public class TourPackageService {
         }
     }
 
-    public void deleteTour(int id) {
-        try {
-            tourPackageDAO.deleteTour(id);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Не вдалося видалити тур", e);
-        }
-    }
-
     public void updateTour(TourPackage tour) {
         try {
             tourPackageDAO.updateTour(tour);
@@ -72,4 +73,12 @@ public class TourPackageService {
         }
     }
 
+    public void deleteTour(int id) {
+        try {
+            tourPackageDAO.deleteTour(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Не вдалося видалити тур", e);
+        }
+    }
 }

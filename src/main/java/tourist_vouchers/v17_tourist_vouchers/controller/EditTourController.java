@@ -1,7 +1,6 @@
 package tourist_vouchers.v17_tourist_vouchers.controller;
 
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
@@ -50,7 +49,7 @@ public class EditTourController {
         cmbTourType.setValue(tourForEdit.getTourType());
     }
 
-    public void handleSave(ActionEvent actionEvent) {
+    public void handleSave() {
         String title = txtTitle.getText().trim();
         String destination = txtDestination.getText().trim();
         String priceStr = txtPrice.getText().trim();
@@ -98,13 +97,13 @@ public class EditTourController {
             tourService.updateTour(tourForEdit);
             AlertUtil.showInfo("Успіх", "Тур успішно оновлено.");
         }
-
         closeWindow();
     }
 
-    public void handleCancel(ActionEvent actionEvent) {
+    public void handleCancel() {
         closeWindow();
     }
+
     private void closeWindow() {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();

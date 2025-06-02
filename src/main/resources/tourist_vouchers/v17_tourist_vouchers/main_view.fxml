@@ -17,8 +17,8 @@
 <VBox alignment="CENTER" prefHeight="520.0" prefWidth="800.0" spacing="20.0" style="-fx-background-color: #dcf5fb;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tourist_vouchers.v17_tourist_vouchers.controller.MainController">
    <MenuBar>
       <Menu mnemonicParsing="false" text="Програма">
-         <MenuItem mnemonicParsing="false" onAction="#handleMenuInfo" text="Інформація"/>
-         <MenuItem fx:id="menuExit" mnemonicParsing="false" onAction="#handleMenuExit" text="Вихід"/>
+         <MenuItem mnemonicParsing="false" onAction="#handleMenuInfo" text="Інформація" />
+         <MenuItem fx:id="menuExit" mnemonicParsing="false" onAction="#handleMenuExit" text="Вихід" />
       </Menu>
       <Menu mnemonicParsing="false" text="Робота з турами">
          <MenuItem fx:id="menuItemAddTour" mnemonicParsing="false" onAction="#handleMenuItemAddTour" text="Додати тур" />
@@ -27,8 +27,8 @@
       </Menu>
    </MenuBar>
    <Pane prefHeight="206.0" prefWidth="800.0">
-      <Button fx:id="btnApplyFilter" layoutX="602.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleApplyFilter" prefHeight="61.0" prefWidth="184.0" text="Застосувати фільтр" />
-      <Button fx:id="btnResetFilter" layoutX="602.0" layoutY="89.0" mnemonicParsing="false" onAction="#handleResetFilter" prefHeight="25.0" prefWidth="184.0" text="Скинути" />
+      <Button layoutX="602.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleApplyFilter" prefHeight="61.0" prefWidth="184.0" text="Застосувати фільтр" />
+      <Button layoutX="602.0" layoutY="89.0" mnemonicParsing="false" onAction="#handleResetFilter" prefHeight="25.0" prefWidth="184.0" text="Скинути" />
       <Label layoutX="6.0" layoutY="10.0" text="Місце призначення" />
       <ComboBox fx:id="cmbDestination" layoutX="148.0" prefWidth="150.0" />
       <Label layoutX="6.0" layoutY="58.0" text="Тип туру" />
@@ -58,14 +58,15 @@
          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
       </columnResizePolicy>
    </TableView>
-   <HBox alignment="TOP_CENTER" prefHeight="37.0" prefWidth="800.0" spacing="100.0">
+   <HBox alignment="TOP_CENTER" prefHeight="37.0" prefWidth="800.0" spacing="30.0">
       <opaqueInsets>
          <Insets />
       </opaqueInsets>
       <VBox.margin>
          <Insets bottom="10.0" />
       </VBox.margin>
-      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="179.0" style="-fx-background-color: #dca142; -fx-font-size: 17;" text="Обраний тур" />
-      <Button fx:id="btnBooking" mnemonicParsing="false" prefHeight="40.0" prefWidth="479.0" style="-fx-background-color: #3fcfa8; -fx-font-size: 17;" text="Замовити" />
+      <Button mnemonicParsing="false" onAction="#handleBtnClearSelectedTour" style="-fx-background-color: #d56839; -fx-font-size: 17;" text="Скасувати бронювання" />
+      <Button mnemonicParsing="false" onAction="#handleBtnSelectedTour" prefHeight="40.0" prefWidth="179.0" style="-fx-background-color: #dca142; -fx-font-size: 17;" text="Обраний тур" />
+      <Button mnemonicParsing="false" onAction="#handleBtnBooking" prefHeight="44.0" prefWidth="334.0" style="-fx-background-color: #3fcfa8; -fx-font-size: 17;" text="Замовити" />
    </HBox>
 </VBox>

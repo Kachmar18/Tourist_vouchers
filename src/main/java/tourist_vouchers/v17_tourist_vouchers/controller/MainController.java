@@ -2,7 +2,6 @@ package tourist_vouchers.v17_tourist_vouchers.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,13 +12,13 @@ import java.io.IOException;
 import java.util.List;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
 import tourist_vouchers.v17_tourist_vouchers.MainApp;
-import tourist_vouchers.v17_tourist_vouchers.model.FoodType;
-import tourist_vouchers.v17_tourist_vouchers.model.TourPackage;
-import tourist_vouchers.v17_tourist_vouchers.model.TourType;
-import tourist_vouchers.v17_tourist_vouchers.model.TransportType;
+import tourist_vouchers.v17_tourist_vouchers.model.*;
+import tourist_vouchers.v17_tourist_vouchers.services.ClientChoiceService;
 import tourist_vouchers.v17_tourist_vouchers.services.TourPackageService;
 import tourist_vouchers.v17_tourist_vouchers.util.AlertUtil;
+import tourist_vouchers.v17_tourist_vouchers.util.WindowUtil;
 
 public class MainController {
     public MenuItem menuItemAddTour, menuItemEditTour, menuExit, menuItemDeleteTour;
@@ -34,6 +33,12 @@ public class MainController {
     private final TourPackageService tourService = new TourPackageService(); // Сервіс для роботи з турами
     private final ObservableList<TourPackage> toursData = FXCollections.observableArrayList();
     private FilteredList<TourPackage> filteredTours;
+    private final ClientChoiceService clientChoiceService = new ClientChoiceService();
+    private ClientChoice currentClient;
+
+    public void setCurrentClient(ClientChoice client) {
+        this.currentClient = client;
+    }
 
     @FXML
     private void initialize() {
@@ -64,7 +69,6 @@ public class MainController {
     private void loadTours() {
         List<TourPackage> tours = tourService.getAllTours();
         toursData.setAll(tours);
-        tblTours.setItems(toursData);
 
         if (filteredTours == null) {
             filteredTours = new FilteredList<>(toursData, p -> true);
@@ -129,25 +133,13 @@ public class MainController {
     }
 
     @FXML
-    public void handleMenuItemAddTour(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/tourist_vouchers/v17_tourist_vouchers/edit_tour.fxml"));
-            Parent root = loader.load();
-
-            Stage stage = new Stage();
-            stage.setTitle("Додати тур");
-            stage.setScene(new Scene(root));
-            stage.showAndWait();
-
-            loadTours();
-        } catch (IOException e) {
-            e.printStackTrace();
-            AlertUtil.showError("Помилка", "Не вдалося відкрити вікно додавання туру.");
-        }
+    public void handleMenuItemAddTour() {
+        WindowUtil.openNewWindow("/tourist_vouchers/v17_tourist_vouchers/edit_tour.fxml", "Додати тур");
+        loadTours();
     }
 
     @FXML
-    public void handleMenuItemEditTour(ActionEvent event) {
+    public void handleMenuItemEditTour() {
         TourPackage selectedTour = tblTours.getSelectionModel().getSelectedItem();
         if (selectedTour == null) {
             AlertUtil.showError("Помилка", "Спочатку виберіть тур для редагування.");
@@ -174,7 +166,7 @@ public class MainController {
     }
 
     @FXML
-    public void handleMenuItemDeleteTour(ActionEvent event) {
+    public void handleMenuItemDeleteTour() {
         TourPackage selectedTour = tblTours.getSelectionModel().getSelectedItem();
         if (selectedTour == null) {
             AlertUtil.showError("Помилка", "Спочатку виберіть тур для видалення.");
@@ -201,21 +193,71 @@ public class MainController {
     }
 
     @FXML
-    public void handleMenuExit(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(
-                    MainApp.class.getResource("/tourist_vouchers/v17_tourist_vouchers/login_view.fxml")
-            );
-            Parent root = fxmlLoader.load();
-            Stage stage = (Stage) tblTours.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            AlertUtil.showError("Помилка", "Не вдалося повернутися на екран входу.");
+    public void handleMenuExit() {
+        WindowUtil.switchScene((Stage) tblTours.getScene().getWindow(), "/tourist_vouchers/v17_tourist_vouchers/login_view.fxml");
+    }
+
+    @FXML
+    public void handleMenuInfo() {
+        WindowUtil.switchScene((Stage) tblTours.getScene().getWindow(), "/tourist_vouchers/v17_tourist_vouchers/info_view.fxml");
+    }
+
+    @FXML
+    public void handleBtnBooking() {
+        TourPackage selectedTour = tblTours.getSelectionModel().getSelectedItem();
+        if (selectedTour == null) {
+            AlertUtil.showError("Помилка", "Спочатку виберіть тур для бронювання.");
+            return;
+        }
+
+        boolean success = clientChoiceService.bookTour(currentClient.getId_client(), selectedTour.getId());
+        if (success) {
+            AlertUtil.showInfo("Успіх", "Тур успішно заброньовано!");
+            currentClient.setId_selectedTour(selectedTour.getId()); // оновлюємо локально
+        } else {
+            AlertUtil.showError("Помилка", "Не вдалося забронювати тур.");
         }
     }
 
-    public void handleMenuInfo(ActionEvent actionEvent) {
+    @FXML
+    public void handleBtnSelectedTour() {
+        int selectedTourId = currentClient.getId_selectedTour();
+        if (selectedTourId == 0) {
+            AlertUtil.showInfo("Інформація", "Ви ще не забронювали жодного туру.");
+            return;
+        }
+
+        TourPackage tour = tourService.getTourById(selectedTourId);
+        if (tour != null) {
+            String info = "Назва: " + tour.getTitle() + "\n"
+                    + "Місце призначення: " + tour.getDestination() + "\n"
+                    + "Ціна: " + tour.getPrice() + "\n"
+                    + "Дні: " + tour.getDays() + "\n"
+                    + "Транспорт: " + tour.getTransport().getDisplayName() + "\n"
+                    + "Харчування: " + tour.getFoodType().getDisplayName() + "\n"
+                    + "Тип туру: " + tour.getTourType().getDisplayName();
+
+            AlertUtil.showInfo("Обраний тур", info);
+        } else {
+            AlertUtil.showError("Помилка", "Не вдалося знайти тур у базі.");
+        }
     }
+
+
+    @FXML
+    public void handleBtnClearSelectedTour() {
+        if (currentClient.getId_selectedTour() == 0) {
+            AlertUtil.showInfo("Інформація", "У вас вже немає обраного туру.");
+            return;
+        }
+
+        boolean success = clientChoiceService.clearBookedTour(currentClient.getId_client());
+        if (success) {
+            currentClient.setId_selectedTour(0); // оновлюємо локально
+            AlertUtil.showInfo("Успіх", "Ваш обраний тур було скасовано.");
+        } else {
+            AlertUtil.showError("Помилка", "Не вдалося скасувати тур.");
+        }
+    }
+
 }

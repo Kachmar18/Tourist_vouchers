@@ -19,6 +19,6 @@
 
    <Text layoutX="580.0" layoutY="395.0" style="-fx-font-size: 18; -fx-text-alignment: right;" text="Розробила &#10;студентка групи ОІ-11СП&#10;Орищин Вікторія &#10;Варіант 17" wrappingWidth="200.0" />
 
-   <Button fx:id="btnGoBack" layoutX="15.0" layoutY="467.0" mnemonicParsing="false" onAction="#handleGoBack" prefHeight="31.0" prefWidth="170.0" text="Повернутись назад" />
+   <Button layoutX="15.0" layoutY="467.0" mnemonicParsing="false" onAction="#handleGoBack" prefHeight="31.0" prefWidth="170.0" text="Повернутись назад" />
 
 </AnchorPane>

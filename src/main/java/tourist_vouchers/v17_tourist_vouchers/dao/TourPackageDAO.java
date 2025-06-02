@@ -36,6 +36,30 @@ public class TourPackageDAO {
         return tours;
     }
 
+    public TourPackage getTourById(int id) throws SQLException {
+        String sql = "SELECT * FROM tour WHERE tour_id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return new TourPackage(
+                        rs.getInt("tour_id"),
+                        rs.getString("title"),
+                        rs.getString("destination"),
+                        rs.getDouble("price"),
+                        rs.getInt("days"),
+                        TransportType.valueOf(rs.getString("transport")),
+                        FoodType.valueOf(rs.getString("food_type")),
+                        TourType.valueOf(rs.getString("tour_type"))
+                );
+            }
+        }
+        return null;
+    }
+
     public void addTour(TourPackage tour) throws SQLException {
         String sql = "INSERT INTO `tour`(`title`, `destination`, `price`, `days`, `transport`, `food_type`, `tour_type`) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";

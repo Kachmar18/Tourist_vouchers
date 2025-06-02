@@ -17,7 +17,6 @@ public class DBConnection {
         return connection;
     }
 
-    // перевірка чи підключена програма до БД
     public static boolean isDatabaseConnected() {
         try {
             Connection connection = DriverManager.getConnection(DATABASEURL, USERNAME, PASSWORD);

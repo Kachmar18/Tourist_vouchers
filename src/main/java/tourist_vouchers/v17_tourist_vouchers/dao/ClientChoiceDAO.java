@@ -61,5 +61,33 @@ public class ClientChoiceDAO {
 
         return null;
     }
-}
 
+    public boolean updateClientTour(int clientId, int tourId) {
+        String sql = "UPDATE client_choices SET tour_id = ? WHERE id_client = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, tourId);
+            stmt.setInt(2, clientId);
+            int updated = stmt.executeUpdate();
+            return updated > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean clearClientTour(int clientId) {
+        String sql = "UPDATE client_choices SET tour_id = NULL WHERE id_client = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, clientId);
+            int updated = stmt.executeUpdate();
+            return updated > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+}
