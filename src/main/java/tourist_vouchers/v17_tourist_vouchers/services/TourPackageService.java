@@ -16,6 +16,10 @@ public class TourPackageService {
         this.tourPackageDAO = new TourPackageDAO();
     }
 
+    public TourPackageService(TourPackageDAO tourPackageDAO) {
+        this.tourPackageDAO = tourPackageDAO;
+    }
+
     public List<TourPackage> getAllTours() {
         try {
             return tourPackageDAO.getAllTours();

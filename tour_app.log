@@ -1,0 +1,202 @@
+черв. 03, 2025 7:36:01 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Спроба входу користувача: test1
+черв. 03, 2025 7:36:01 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Успішний вхід користувача: test1
+черв. 03, 2025 7:36:13 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Спроба входу користувача: ada
+черв. 03, 2025 7:36:13 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+WARNING: Невдалий вхід користувача: ada
+черв. 03, 2025 7:43:59 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController switchToSignUpPane
+INFO: Перехід на панель реєстрації
+черв. 03, 2025 7:44:04 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleCreateAccount
+INFO: Спроба створення облікового запису: 212
+черв. 03, 2025 7:44:20 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleCreateAccount
+INFO: Спроба створення облікового запису: 1111
+черв. 03, 2025 7:44:22 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleCreateAccount
+INFO: Спроба створення облікового запису: 1111
+черв. 03, 2025 7:44:26 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleCreateAccount
+INFO: Спроба створення облікового запису: 1111
+черв. 03, 2025 7:44:33 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleCreateAccount
+INFO: Спроба створення облікового запису: 1111
+черв. 03, 2025 7:44:33 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleCreateAccount
+INFO: Користувач зареєстрований та увійшов: 1111
+черв. 03, 2025 7:51:54 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Спроба входу користувача: test1
+черв. 03, 2025 7:51:54 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Успішний вхід користувача: test1
+черв. 03, 2025 7:51:54 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController initialize
+INFO: Головне вікно ініціалізовано.
+черв. 03, 2025 7:52:05 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController handleBtnBooking
+INFO: Користувач намагається забронювати тур (ID: 5)
+черв. 03, 2025 7:52:05 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController handleBtnBooking
+INFO: Тур успішно заброньовано користувачем ID: 17
+черв. 03, 2025 7:52:10 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController handleMenuItemDeleteTour
+INFO: Користувач намагається видалити тур ID: 10
+черв. 03, 2025 7:52:13 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController handleBtnSelectedTour
+INFO: Користувач ID 17 скасовує бронювання туру.
+черв. 03, 2025 10:19:11 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Спроба входу користувача: test1
+черв. 03, 2025 10:19:11 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Успішний вхід користувача: test1
+черв. 03, 2025 10:19:11 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController initialize
+INFO: Ініціалізація MainController
+черв. 03, 2025 10:19:11 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController loadTours
+INFO: Завантаження всіх турів
+черв. 03, 2025 10:19:11 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController loadDestinations
+INFO: Завантаження напрямків
+черв. 03, 2025 10:19:11 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController setCurrentClient
+INFO: Поточний клієнт встановлений: ID=17
+черв. 03, 2025 10:24:29 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Спроба входу користувача: test1
+черв. 03, 2025 10:24:29 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Успішний вхід користувача: test1
+черв. 03, 2025 10:24:30 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController initialize
+INFO: Ініціалізація MainController
+черв. 03, 2025 10:24:30 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController loadTours
+INFO: Завантаження всіх турів
+черв. 03, 2025 10:24:30 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController loadDestinations
+INFO: Завантаження напрямків
+черв. 03, 2025 10:24:30 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController setCurrentClient
+INFO: Поточний клієнт встановлений: ID=17
+черв. 04, 2025 7:07:07 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController switchToSignUpPane
+INFO: Перехід на панель реєстрації
+черв. 04, 2025 7:07:09 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController switchToLoginPane
+INFO: Перехід на панель входу
+черв. 04, 2025 7:07:21 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Спроба входу користувача: test1
+черв. 04, 2025 7:07:21 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Успішний вхід користувача: test1
+черв. 04, 2025 7:07:21 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController initialize
+INFO: Ініціалізація MainController
+черв. 04, 2025 7:07:21 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController loadTours
+INFO: Завантаження всіх турів
+черв. 04, 2025 7:07:21 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController loadDestinations
+INFO: Завантаження напрямків
+черв. 04, 2025 7:07:21 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController setCurrentClient
+INFO: Поточний клієнт встановлений: ID=17
+черв. 04, 2025 7:07:29 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController handleMenuExit
+INFO: Вихід з програми
+черв. 04, 2025 7:07:36 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Спроба входу користувача: test1
+черв. 04, 2025 7:07:36 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Успішний вхід користувача: test1
+черв. 04, 2025 7:07:36 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController initialize
+INFO: Ініціалізація MainController
+черв. 04, 2025 7:07:36 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController loadTours
+INFO: Завантаження всіх турів
+черв. 04, 2025 7:07:36 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController loadDestinations
+INFO: Завантаження напрямків
+черв. 04, 2025 7:07:36 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController setCurrentClient
+INFO: Поточний клієнт встановлений: ID=17
+черв. 04, 2025 7:07:42 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController handleApplyFilter
+INFO: Застосування фільтрів
+черв. 04, 2025 7:07:42 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController handleApplyFilter
+INFO: Фільтрацію завершено. Знайдено: 1
+черв. 04, 2025 7:07:44 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController handleResetFilter
+INFO: Скидання фільтрів
+черв. 04, 2025 7:07:44 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController loadTours
+INFO: Завантаження всіх турів
+черв. 04, 2025 7:07:47 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController onSearchByKeyword
+INFO: Пошук за ключовим словом: l
+черв. 04, 2025 7:07:47 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController onSearchByKeyword
+INFO: Пошук за ключовим словом: lv
+черв. 04, 2025 7:07:48 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController onSearchByKeyword
+INFO: Пошук за ключовим словом: l
+черв. 04, 2025 7:07:49 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController onSearchByKeyword
+INFO: Пошук за ключовим словом: 
+черв. 04, 2025 7:07:49 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController onSearchByKeyword
+INFO: Пошук за ключовим словом: l
+черв. 04, 2025 7:07:49 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController onSearchByKeyword
+INFO: Пошук за ключовим словом: lv
+черв. 04, 2025 7:07:50 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController onSearchByKeyword
+INFO: Пошук за ключовим словом: l
+черв. 04, 2025 7:07:51 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController onSearchByKeyword
+INFO: Пошук за ключовим словом: 
+черв. 04, 2025 7:07:52 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController onSearchByKeyword
+INFO: Пошук за ключовим словом: 7
+черв. 04, 2025 7:07:52 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController onSearchByKeyword
+INFO: Пошук за ключовим словом: 
+черв. 04, 2025 7:07:56 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController handleBtnBooking
+INFO: Користувач намагається забронювати тур (ID: 6)
+черв. 04, 2025 7:07:56 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController handleBtnBooking
+INFO: Тур успішно заброньовано користувачем ID: 17
+черв. 04, 2025 7:08:00 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController handleBtnSelectedTour
+INFO: Користувач ID 17 скасовує бронювання туру.
+черв. 04, 2025 7:08:02 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController handleBtnClearSelectedTour
+INFO: Тур скасовано: clientId=17
+черв. 04, 2025 7:08:08 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController handleMenuItemAddTour
+INFO: Відкриття вікна додавання туру
+черв. 04, 2025 7:08:13 ПП tourist_vouchers.v17_tourist_vouchers.controller.EditTourController handleSave
+INFO: Спроба збереження туру: dfgdfg
+черв. 04, 2025 7:08:15 ПП tourist_vouchers.v17_tourist_vouchers.controller.EditTourController handleCancel
+INFO: Скасовано редагування туру
+черв. 04, 2025 7:08:15 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController loadTours
+INFO: Завантаження всіх турів
+черв. 04, 2025 7:08:19 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController handleMenuItemDeleteTour
+INFO: Користувач намагається видалити тур ID: 3
+черв. 04, 2025 7:08:20 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController lambda$handleMenuItemDeleteTour$6
+INFO: Тур видалено: ID=3
+черв. 04, 2025 7:08:20 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController loadTours
+INFO: Завантаження всіх турів
+черв. 04, 2025 7:08:30 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController handleMenuInfo
+INFO: Перехід до сторінки 'Про програму'
+черв. 04, 2025 7:08:51 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Спроба входу користувача: test1
+черв. 04, 2025 7:08:51 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Успішний вхід користувача: test1
+черв. 04, 2025 7:08:51 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController initialize
+INFO: Ініціалізація MainController
+черв. 04, 2025 7:08:51 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController loadTours
+INFO: Завантаження всіх турів
+черв. 04, 2025 7:08:51 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController loadDestinations
+INFO: Завантаження напрямків
+черв. 04, 2025 7:08:51 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController setCurrentClient
+INFO: Поточний клієнт встановлений: ID=17
+черв. 05, 2025 8:27:21 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Спроба входу користувача: test1
+черв. 05, 2025 8:27:21 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Успішний вхід користувача: test1
+черв. 05, 2025 8:27:21 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController initialize
+INFO: Ініціалізація MainController
+черв. 05, 2025 8:27:21 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController loadTours
+INFO: Завантаження всіх турів
+черв. 05, 2025 8:27:21 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController loadDestinations
+INFO: Завантаження напрямків
+черв. 05, 2025 8:27:21 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController setCurrentClient
+INFO: Поточний клієнт встановлений: ID=17
+черв. 05, 2025 8:29:38 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Спроба входу користувача: test1
+черв. 05, 2025 8:29:38 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Успішний вхід користувача: test1
+черв. 05, 2025 8:29:38 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController initialize
+INFO: Ініціалізація MainController
+черв. 05, 2025 8:29:38 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController loadTours
+INFO: Завантаження всіх турів
+черв. 05, 2025 8:29:38 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController loadDestinations
+INFO: Завантаження напрямків
+черв. 05, 2025 8:29:38 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController setCurrentClient
+INFO: Поточний клієнт встановлений: ID=17
+черв. 05, 2025 8:31:28 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Спроба входу користувача: test1
+черв. 05, 2025 8:31:28 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Успішний вхід користувача: test1
+черв. 05, 2025 8:31:28 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController initialize
+INFO: Ініціалізація MainController
+черв. 05, 2025 8:31:28 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController loadTours
+INFO: Завантаження всіх турів
+черв. 05, 2025 8:31:28 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController loadDestinations
+INFO: Завантаження напрямків
+черв. 05, 2025 8:31:28 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController setCurrentClient
+INFO: Поточний клієнт встановлений: ID=17
+черв. 05, 2025 9:00:10 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Спроба входу користувача: test1
+черв. 05, 2025 9:00:10 ПП tourist_vouchers.v17_tourist_vouchers.controller.LoginController handleLogin
+INFO: Успішний вхід користувача: test1
+черв. 05, 2025 9:00:10 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController initialize
+INFO: Ініціалізація MainController
+черв. 05, 2025 9:00:10 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController loadTours
+INFO: Завантаження всіх турів
+черв. 05, 2025 9:00:10 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController loadDestinations
+INFO: Завантаження напрямків
+черв. 05, 2025 9:00:10 ПП tourist_vouchers.v17_tourist_vouchers.controller.MainController setCurrentClient
+INFO: Поточний клієнт встановлений: ID=17

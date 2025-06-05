@@ -3,8 +3,18 @@ package tourist_vouchers.v17_tourist_vouchers.services;
 import tourist_vouchers.v17_tourist_vouchers.dao.ClientChoiceDAO;
 import tourist_vouchers.v17_tourist_vouchers.model.ClientChoice;
 
+import java.util.List;
+
 public class ClientChoiceService {
-    private final ClientChoiceDAO dao = new ClientChoiceDAO();
+    private final ClientChoiceDAO dao;
+
+    public ClientChoiceService() {
+        this.dao = new ClientChoiceDAO();
+    }
+
+    public ClientChoiceService(ClientChoiceDAO dao) {
+        this.dao = dao;
+    }
 
     public boolean registerClient(String name, String phone, String password) {
         try {
@@ -31,6 +41,10 @@ public class ClientChoiceService {
 
     public boolean clearBookedTour(int clientId) {
         return dao.clearClientTour(clientId);
+    }
+
+    public List<ClientChoice> getClientsWithTours() {
+        return dao.getClientsWithTour();
     }
 }
 

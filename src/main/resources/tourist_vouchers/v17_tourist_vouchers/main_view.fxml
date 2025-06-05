@@ -14,10 +14,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="520.0" prefWidth="800.0" spacing="20.0" style="-fx-background-color: #dcf5fb;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tourist_vouchers.v17_tourist_vouchers.controller.MainController">
+<VBox fx:id="rootPane" alignment="CENTER" prefHeight="520.0" prefWidth="800.0" spacing="20.0" style="-fx-background-color: #dcf5fb;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tourist_vouchers.v17_tourist_vouchers.controller.MainController">
    <MenuBar>
       <Menu mnemonicParsing="false" text="Програма">
          <MenuItem mnemonicParsing="false" onAction="#handleMenuInfo" text="Інформація" />
+         <MenuItem mnemonicParsing="false" onAction="#handleExportReport" text="Звіт" />
          <MenuItem fx:id="menuExit" mnemonicParsing="false" onAction="#handleMenuExit" text="Вихід" />
       </Menu>
       <Menu mnemonicParsing="false" text="Робота з турами">

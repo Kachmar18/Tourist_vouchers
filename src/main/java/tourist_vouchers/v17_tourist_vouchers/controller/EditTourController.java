@@ -12,6 +12,11 @@ import tourist_vouchers.v17_tourist_vouchers.model.TourType;
 import tourist_vouchers.v17_tourist_vouchers.model.TransportType;
 import tourist_vouchers.v17_tourist_vouchers.services.TourPackageService;
 import tourist_vouchers.v17_tourist_vouchers.util.AlertUtil;
+import tourist_vouchers.v17_tourist_vouchers.util.LogUtil;
+import tourist_vouchers.v17_tourist_vouchers.util.Validator;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class EditTourController {
     public TextField txtTitle, txtDestination, txtPrice, txtDays;
@@ -22,6 +27,7 @@ public class EditTourController {
 
     private final TourPackageService tourService = new TourPackageService();
     private TourPackage tourForEdit;
+    private static final Logger logger = LogUtil.getLogger();
 
     @FXML
     private void initialize() {
@@ -58,12 +64,34 @@ public class EditTourController {
         FoodType food = cmbFoodType.getValue();
         TourType tourType = cmbTourType.getValue();
 
+        logger.info("Спроба збереження туру: " + title);
+
         if (title.isEmpty() || destination.isEmpty() || priceStr.isEmpty() || daysStr.isEmpty()
                 || transport == null || food == null || tourType == null) {
             AlertUtil.showError("Помилка", "Будь ласка, заповніть усі поля.");
             return;
         }
 
+        if (!Validator.isValidName(title)) {
+            AlertUtil.showError("Помилка", "Назва туру повинна містити щонайменше 3 символи.");
+            return;
+        }
+
+        if (!Validator.isValidDestination(destination)) {
+            AlertUtil.showError("Помилка", "Місце призначення повинно містити щонайменше 3 символи.");
+            return;
+        }
+
+        if (!Validator.isValidPrice(priceStr)) {
+            AlertUtil.showError("Помилка", "Ціна повинна бути додатнім числом.");
+            return;
+        }
+
+        if (!Validator.isValidDays(daysStr)) {
+            AlertUtil.showError("Помилка", "Кількість днів повинна бути додатнім числом.");
+            return;
+        }
+        
         double price;
         int days;
         try {
@@ -71,6 +99,7 @@ public class EditTourController {
             days = Integer.parseInt(daysStr);
         } catch (NumberFormatException e) {
             AlertUtil.showError("Помилка", "Ціна та кількість днів мають бути числовими.");
+            logger.log(Level.WARNING, "Неправильний формат чисел: " + priceStr + ", " + daysStr, e);
             return;
         }
 
@@ -79,28 +108,34 @@ public class EditTourController {
             return;
         }
 
-        if (tourForEdit == null) {
-            // Додаємо
-            TourPackage newTour = new TourPackage(0, title, destination, price, days, transport, food, tourType);
-            tourService.addTour(newTour);
-            AlertUtil.showInfo("Успіх", "Тур успішно додано.");
-        } else {
-            // Редагуємо
-            tourForEdit.setTitle(title);
-            tourForEdit.setDestination(destination);
-            tourForEdit.setPrice(price);
-            tourForEdit.setDays(days);
-            tourForEdit.setTransport(transport);
-            tourForEdit.setFoodType(food);
-            tourForEdit.setTourType(tourType);
+        try {
+            if (tourForEdit == null) {
+                TourPackage newTour = new TourPackage(0, title, destination, price, days, transport, food, tourType);
+                tourService.addTour(newTour);
+                logger.info("Додано новий тур: " + title);
+                AlertUtil.showInfo("Успіх", "Тур успішно додано.");
+            } else {
+                tourForEdit.setTitle(title);
+                tourForEdit.setDestination(destination);
+                tourForEdit.setPrice(price);
+                tourForEdit.setDays(days);
+                tourForEdit.setTransport(transport);
+                tourForEdit.setFoodType(food);
+                tourForEdit.setTourType(tourType);
 
-            tourService.updateTour(tourForEdit);
-            AlertUtil.showInfo("Успіх", "Тур успішно оновлено.");
+                tourService.updateTour(tourForEdit);
+                logger.info("Оновлено тур: " + title);
+                AlertUtil.showInfo("Успіх", "Тур успішно оновлено.");
+            }
+            closeWindow();
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Критична помилка при збереженні туру", e);
+            AlertUtil.showError("Помилка", "Не вдалося зберегти тур. Деталі надіслано адміністратору.");
         }
-        closeWindow();
     }
 
     public void handleCancel() {
+        logger.info("Скасовано редагування туру");
         closeWindow();
     }
 

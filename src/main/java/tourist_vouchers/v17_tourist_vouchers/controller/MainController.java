@@ -2,26 +2,34 @@ package tourist_vouchers.v17_tourist_vouchers.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.collections.transformation.FilteredList;
+
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import tourist_vouchers.v17_tourist_vouchers.MainApp;
 import tourist_vouchers.v17_tourist_vouchers.model.*;
 import tourist_vouchers.v17_tourist_vouchers.services.ClientChoiceService;
 import tourist_vouchers.v17_tourist_vouchers.services.TourPackageService;
-import tourist_vouchers.v17_tourist_vouchers.util.AlertUtil;
-import tourist_vouchers.v17_tourist_vouchers.util.WindowUtil;
+import tourist_vouchers.v17_tourist_vouchers.util.*;
 
 public class MainController {
     public MenuItem menuItemAddTour, menuItemEditTour, menuExit, menuItemDeleteTour;
+    public VBox rootPane;
     @FXML private ComboBox<String> cmbDestination;
     @FXML private ComboBox<FoodType> cmbFoodType;
     @FXML private ComboBox<TourType> cmbTourType;
@@ -30,6 +38,7 @@ public class MainController {
     @FXML private TableView<TourPackage> tblTours;
     @FXML private TableColumn<TourPackage, String> priceCol, titleCol, tour_typeCol, transport_typeCol, daysCol, destinationCol, food_typeCol;
 
+    private static final Logger logger = LogUtil.getLogger();
     private final TourPackageService tourService = new TourPackageService(); // Сервіс для роботи з турами
     private final ObservableList<TourPackage> toursData = FXCollections.observableArrayList();
     private FilteredList<TourPackage> filteredTours;
@@ -38,10 +47,18 @@ public class MainController {
 
     public void setCurrentClient(ClientChoice client) {
         this.currentClient = client;
+        logger.info("Поточний клієнт встановлений: ID=" + client.getId_client());
     }
 
     @FXML
     private void initialize() {
+        logger.info("Ініціалізація MainController");
+        if (!DBConnection.isDatabaseConnected()) {
+            AlertUtil.showError("Помилка підключення", "Не вдалося підключитися до бази даних.\nПрограма буде закрита.");
+            logger.severe("Не вдалося підключитися до бази даних");
+            handleMenuExit();
+        }
+
         setupComboBoxes();
         setupTableColumns();
         loadTours();
@@ -67,6 +84,7 @@ public class MainController {
     }
 
     private void loadTours() {
+        logger.info("Завантаження всіх турів");
         List<TourPackage> tours = tourService.getAllTours();
         toursData.setAll(tours);
 
@@ -77,6 +95,7 @@ public class MainController {
     }
 
     private void loadDestinations() {
+        logger.info("Завантаження напрямків");
         List<String> destinations = tourService.getAllDestinations();
         cmbDestination.setItems(FXCollections.observableArrayList(destinations));
         cmbDestination.getItems().addFirst(""); // Пустий рядок для відображення всіх пунктів
@@ -84,28 +103,31 @@ public class MainController {
 
     @FXML
     private void handleApplyFilter() {
-        String destination = cmbDestination.getValue();
-        FoodType foodType = cmbFoodType.getValue();
-        TourType tourType = cmbTourType.getValue();
-        TransportType transportType = cmbTransportType.getValue();
-
-        Integer days = null;
-        Double price = null;
+        logger.info("Застосування фільтрів");
 
         try {
-            if (!txtDays.getText().isEmpty()) days = Integer.parseInt(txtDays.getText());
-            if (!txtPrice.getText().isEmpty()) price = Double.parseDouble(txtPrice.getText());
-        } catch (NumberFormatException e) {
-            AlertUtil.showError("Невірні дані", "Ціна або кількість днів мають бути числами.");
-            return;
-        }
+            Integer days = txtDays.getText().isEmpty() ? null : Integer.parseInt(txtDays.getText());
+            Double price = txtPrice.getText().isEmpty() ? null : Double.parseDouble(txtPrice.getText());
 
-        List<TourPackage> filtered = tourService.filterTours(destination, price, days, tourType, foodType, transportType);
-        toursData.setAll(filtered);
+            List<TourPackage> filtered = tourService.filterTours(
+                    cmbDestination.getValue(),
+                    price,
+                    days,
+                    cmbTourType.getValue(),
+                    cmbFoodType.getValue(),
+                    cmbTransportType.getValue()
+            );
+            toursData.setAll(filtered);
+            logger.info("Фільтрацію завершено. Знайдено: " + filtered.size());
+        } catch (NumberFormatException e) {
+            logger.warning("Невірні дані для фільтрації: " + e.getMessage());
+            AlertUtil.showError("Невірні дані", "Ціна або кількість днів мають бути числами.");
+        }
     }
 
     @FXML
     private void handleResetFilter() {
+        logger.info("Скидання фільтрів");
         cmbDestination.getSelectionModel().clearSelection();
         cmbFoodType.getSelectionModel().clearSelection();
         cmbTourType.getSelectionModel().clearSelection();
@@ -118,6 +140,7 @@ public class MainController {
     @FXML
     private void onSearchByKeyword() {
         String keyword = txtKeyWord.getText().toLowerCase();
+        logger.info("Пошук за ключовим словом: " + keyword);
 
         filteredTours.setPredicate(tour -> {
             if (keyword == null || keyword.isEmpty()) return true;
@@ -134,6 +157,7 @@ public class MainController {
 
     @FXML
     public void handleMenuItemAddTour() {
+        logger.info("Відкриття вікна додавання туру");
         WindowUtil.openNewWindow("/tourist_vouchers/v17_tourist_vouchers/edit_tour.fxml", "Додати тур");
         loadTours();
     }
@@ -149,7 +173,6 @@ public class MainController {
         try {
             FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/tourist_vouchers/v17_tourist_vouchers/edit_tour.fxml"));
             Parent root = loader.load();
-
             EditTourController controller = loader.getController();
             controller.setTourForEdit(selectedTour);
 
@@ -158,9 +181,11 @@ public class MainController {
             stage.setScene(new Scene(root));
             stage.showAndWait();
 
+            logger.info("Редаговано тур: ID=" + selectedTour.getId());
             loadTours();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Помилка при відкритті редактора туру", e);
+            EmailUtil.sendCriticalError("Помилка при редагуванні туру", e);
             AlertUtil.showError("Помилка", "Не вдалося відкрити вікно редагування туру.");
         }
     }
@@ -178,14 +203,17 @@ public class MainController {
         confirmAlert.setHeaderText(null);
         confirmAlert.setContentText("Ви впевнені, що хочете видалити тур \"" + selectedTour.getTitle() + "\"?");
 
+        logger.info("Користувач намагається видалити тур ID: " + selectedTour.getId());
         confirmAlert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 try {
                     tourService.deleteTour(selectedTour.getId());
+                    logger.info("Тур видалено: ID=" + selectedTour.getId());
                     loadTours();
                     AlertUtil.showInfo("Успіх", "Тур видалено успішно.");
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    logger.log(Level.SEVERE, "Не вдалося видалити тур", e);
+                    EmailUtil.sendCriticalError("Помилка видалення туру", e);
                     AlertUtil.showError("Помилка", "Не вдалося видалити тур.");
                 }
             }
@@ -194,11 +222,13 @@ public class MainController {
 
     @FXML
     public void handleMenuExit() {
+        logger.info("Вихід з програми");
         WindowUtil.switchScene((Stage) tblTours.getScene().getWindow(), "/tourist_vouchers/v17_tourist_vouchers/login_view.fxml");
     }
 
     @FXML
     public void handleMenuInfo() {
+        logger.info("Перехід до сторінки 'Про програму'");
         WindowUtil.switchScene((Stage) tblTours.getScene().getWindow(), "/tourist_vouchers/v17_tourist_vouchers/info_view.fxml");
     }
 
@@ -210,12 +240,21 @@ public class MainController {
             return;
         }
 
-        boolean success = clientChoiceService.bookTour(currentClient.getId_client(), selectedTour.getId());
-        if (success) {
-            AlertUtil.showInfo("Успіх", "Тур успішно заброньовано!");
-            currentClient.setId_selectedTour(selectedTour.getId()); // оновлюємо локально
-        } else {
-            AlertUtil.showError("Помилка", "Не вдалося забронювати тур.");
+        logger.info("Користувач намагається забронювати тур (ID: " + selectedTour.getId() + ")");
+        try {
+            boolean success = clientChoiceService.bookTour(currentClient.getId_client(), selectedTour.getId());
+            if (success) {
+                logger.info("Тур успішно заброньовано користувачем ID: " + currentClient.getId_client());
+                currentClient.setId_selectedTour(selectedTour.getId());
+                AlertUtil.showInfo("Успіх", "Тур успішно заброньовано!");
+            } else {
+                logger.warning("Не вдалося забронювати тур користувачу ID: " + currentClient.getId_client());
+                AlertUtil.showError("Помилка", "Не вдалося забронювати тур.");
+            }
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Критична помилка під час бронювання туру", e);
+            EmailUtil.sendCriticalError("Критична помилка при бронюванні", e);
+            AlertUtil.showError("Критична помилка", "Помилка при бронюванні туру. Повідомлення надіслано адміністратору.");
         }
     }
 
@@ -226,6 +265,7 @@ public class MainController {
             AlertUtil.showInfo("Інформація", "Ви ще не забронювали жодного туру.");
             return;
         }
+        logger.info("Користувач ID " + currentClient.getId_client() + " скасовує бронювання туру.");
 
         TourPackage tour = tourService.getTourById(selectedTourId);
         if (tour != null) {
@@ -253,11 +293,46 @@ public class MainController {
 
         boolean success = clientChoiceService.clearBookedTour(currentClient.getId_client());
         if (success) {
-            currentClient.setId_selectedTour(0); // оновлюємо локально
+            logger.info("Тур скасовано: clientId=" + currentClient.getId_client());
+            currentClient.setId_selectedTour(0);
             AlertUtil.showInfo("Успіх", "Ваш обраний тур було скасовано.");
         } else {
+            logger.warning("Не вдалося скасувати тур для clientId=" + currentClient.getId_client());
             AlertUtil.showError("Помилка", "Не вдалося скасувати тур.");
         }
     }
+
+    @FXML
+    private void handleExportReport() {
+        Stage stage = (Stage) tblTours.getScene().getWindow();
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Зберегти звіт");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Excel файли", "*.xlsx")
+        );
+        fileChooser.setInitialFileName("clients_with_tours.xlsx");
+
+        File file = fileChooser.showSaveDialog(stage);
+        if (file != null) {
+            try {
+                ClientChoiceService service = new ClientChoiceService();
+                List<ClientChoice> clients = service.getClientsWithTours(); // цей метод має повертати лише тих, у кого tour_id != null
+
+                if (clients.isEmpty()) {
+                    AlertUtil.showInfo("Немає даних", "Жоден клієнт ще не обрав тур.");
+                    return;
+                }
+
+                ReportUtil.exportClientsToExcel(clients, file.getAbsolutePath());
+                AlertUtil.showInfo("Успіх", "Звіт збережено у файл:\n" + file.getAbsolutePath());
+            } catch (Exception e) {
+                LogUtil.getLogger().severe("Помилка при збереженні звіту: " + e.getMessage());
+                AlertUtil.showError("Помилка", "Не вдалося зберегти звіт.");
+            }
+        }
+    }
+
+
 
 }

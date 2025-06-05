@@ -2,9 +2,10 @@ package tourist_vouchers.v17_tourist_vouchers.dao;
 
 import tourist_vouchers.v17_tourist_vouchers.model.ClientChoice;
 import tourist_vouchers.v17_tourist_vouchers.util.DBConnection;
-
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClientChoiceDAO {
     public boolean register(String name, int phone, int password) {
@@ -58,7 +59,6 @@ public class ClientChoiceDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 
@@ -90,4 +90,33 @@ public class ClientChoiceDAO {
             return false;
         }
     }
+
+    public List<ClientChoice> getClientsWithTour() {
+        List<ClientChoice> clients = new ArrayList<>();
+        String sql = "SELECT * FROM client_choices WHERE tour_id IS NOT NULL";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                ClientChoice client = new ClientChoice(
+                        rs.getInt("id_client"),
+                        rs.getString("name"),
+                        String.valueOf(rs.getInt("phone")),
+                        String.valueOf(rs.getInt("password")),
+                        rs.getDate("booking_date").toLocalDate(),
+                        rs.getInt("tour_id")
+                );
+                clients.add(client);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return clients;
+    }
+
+
+
 }
