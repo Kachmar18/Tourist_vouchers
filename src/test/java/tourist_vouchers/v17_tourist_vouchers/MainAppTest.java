@@ -25,7 +25,7 @@ class AlertUtilTest {
         CountDownLatch latch = new CountDownLatch(1);
         Platform.runLater(() -> {
             assertDoesNotThrow(() ->
-                    AlertUtil.showInfo("Тест інфо", "Це інформаційне повідомлення")
+                    AlertUtil.showInfo("Це інформаційне повідомлення")
             );
             latch.countDown();
         });
@@ -37,7 +37,7 @@ class AlertUtilTest {
         CountDownLatch latch = new CountDownLatch(1);
         Platform.runLater(() -> {
             assertDoesNotThrow(() ->
-                    AlertUtil.showError("Тест помилки", "Це повідомлення про помилку")
+                    AlertUtil.showError("Це повідомлення про помилку")
             );
             latch.countDown();
         });

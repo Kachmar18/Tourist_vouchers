@@ -21,6 +21,10 @@ public class TourPackage {
         this.tourType = tourType;
     }
 
+    public TourPackage() {
+
+    }
+
     public int getId() {
         return id;
     }

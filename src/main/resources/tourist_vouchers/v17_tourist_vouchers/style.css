@@ -41,7 +41,7 @@
     -fx-border-color: #b0c4de;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
-    -fx-padding: 8;
+    -fx-padding: 6;
     -fx-font-size: 14px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);
     -fx-transition: all 0.3s ease;
@@ -80,7 +80,7 @@
     -fx-border-color: #b0c4de;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
-    -fx-padding: 5;
+    -fx-padding: 3;
     -fx-font-size: 14px;
 }
 

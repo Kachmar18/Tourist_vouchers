@@ -19,6 +19,9 @@ public class ClientChoice {
         this.id_selectedTour = id_selectedTour;
     }
 
+    public ClientChoice() {
+
+    }
 
     public int getId_client() {
         return id_client;

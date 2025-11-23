@@ -68,27 +68,27 @@ public class EditTourController {
 
         if (title.isEmpty() || destination.isEmpty() || priceStr.isEmpty() || daysStr.isEmpty()
                 || transport == null || food == null || tourType == null) {
-            AlertUtil.showError("Помилка", "Будь ласка, заповніть усі поля.");
+            AlertUtil.showError("Будь ласка, заповніть усі поля.");
             return;
         }
 
         if (!Validator.isValidName(title)) {
-            AlertUtil.showError("Помилка", "Назва туру повинна містити щонайменше 3 символи.");
+            AlertUtil.showError("Назва туру повинна містити щонайменше 3 символи.");
             return;
         }
 
         if (!Validator.isValidDestination(destination)) {
-            AlertUtil.showError("Помилка", "Місце призначення повинно містити щонайменше 3 символи.");
+            AlertUtil.showError("Місце призначення повинно містити щонайменше 3 символи.");
             return;
         }
 
         if (!Validator.isValidPrice(priceStr)) {
-            AlertUtil.showError("Помилка", "Ціна повинна бути додатнім числом.");
+            AlertUtil.showError("Ціна повинна бути додатнім числом.");
             return;
         }
 
         if (!Validator.isValidDays(daysStr)) {
-            AlertUtil.showError("Помилка", "Кількість днів повинна бути додатнім числом.");
+            AlertUtil.showError("Кількість днів повинна бути додатнім числом.");
             return;
         }
         
@@ -98,13 +98,13 @@ public class EditTourController {
             price = Double.parseDouble(priceStr);
             days = Integer.parseInt(daysStr);
         } catch (NumberFormatException e) {
-            AlertUtil.showError("Помилка", "Ціна та кількість днів мають бути числовими.");
+            AlertUtil.showError("Ціна та кількість днів мають бути числовими.");
             logger.log(Level.WARNING, "Неправильний формат чисел: " + priceStr + ", " + daysStr, e);
             return;
         }
 
         if (price <= 0 || days <= 0) {
-            AlertUtil.showError("Помилка", "Ціна та кількість днів мають бути більше 0.");
+            AlertUtil.showError("Ціна та кількість днів мають бути більше 0.");
             return;
         }
 
@@ -113,7 +113,7 @@ public class EditTourController {
                 TourPackage newTour = new TourPackage(0, title, destination, price, days, transport, food, tourType);
                 tourService.addTour(newTour);
                 logger.info("Додано новий тур: " + title);
-                AlertUtil.showInfo("Успіх", "Тур успішно додано.");
+                AlertUtil.showInfo("Тур успішно додано.");
             } else {
                 tourForEdit.setTitle(title);
                 tourForEdit.setDestination(destination);
@@ -125,12 +125,12 @@ public class EditTourController {
 
                 tourService.updateTour(tourForEdit);
                 logger.info("Оновлено тур: " + title);
-                AlertUtil.showInfo("Успіх", "Тур успішно оновлено.");
+                AlertUtil.showInfo("Тур успішно оновлено.");
             }
             closeWindow();
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Критична помилка при збереженні туру", e);
-            AlertUtil.showError("Помилка", "Не вдалося зберегти тур. Деталі надіслано адміністратору.");
+            AlertUtil.showError("Не вдалося зберегти тур. Деталі надіслано адміністратору.");
         }
     }
 

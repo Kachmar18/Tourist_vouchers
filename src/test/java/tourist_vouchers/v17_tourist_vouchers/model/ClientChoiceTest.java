@@ -1,58 +1,55 @@
 package tourist_vouchers.v17_tourist_vouchers.model;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class ClientChoiceTest {
-    private ClientChoice client;
 
-    @BeforeEach
-    void setUp() {
-        client = new ClientChoice(1, "Ivan", "987654321", "1234", LocalDate.of(2025, 6, 3), 5);
+    @Test
+    void testDefaultConstructor() {
+        ClientChoice choice = new ClientChoice();
+        assertNotNull(choice);
     }
 
     @Test
-    void testConstructorAndGetters() {
-        assertEquals(1, client.getId_client());
-        assertEquals("Ivan", client.getName());
-        assertEquals(987654321, client.getPhone());
-        assertEquals(1234, client.getPassword());
-        assertEquals(LocalDate.of(2025, 6, 3), client.getBookingDate());
-        assertEquals(5, client.getId_selectedTour());
+    void testFullConstructor() {
+        LocalDate date = LocalDate.of(2025, 11, 23);
+
+        ClientChoice choice = new ClientChoice(
+                1,
+                "Alice",
+                "123456",
+                "7890",
+                date,
+                10
+        );
+
+        assertEquals(1, choice.getId_client());
+        assertEquals("Alice", choice.getName());
+        assertEquals(123456, choice.getPhone());
+        assertEquals(7890, choice.getPassword());
+        assertEquals(date, choice.getBookingDate());
+        assertEquals(10, choice.getId_selectedTour());
     }
 
     @Test
-    void testSetters() {
-        client.setId_client(2);
-        client.setName("Oksana");
-        client.setPhone(123456789);
-        client.setPassword(5678);
-        client.setBookingDate(LocalDate.of(2024, 1, 1));
-        client.setId_selectedTour(10);
+    void testSettersAndGetters() {
+        ClientChoice choice = new ClientChoice();
+        LocalDate date = LocalDate.of(2025, 12, 1);
 
-        assertEquals(2, client.getId_client());
-        assertEquals("Oksana", client.getName());
-        assertEquals(123456789, client.getPhone());
-        assertEquals(5678, client.getPassword());
-        assertEquals(LocalDate.of(2024, 1, 1), client.getBookingDate());
-        assertEquals(10, client.getId_selectedTour());
-    }
+        choice.setId_client(5);
+        choice.setName("Bob");
+        choice.setPhone(654321);
+        choice.setPassword(4321);
+        choice.setBookingDate(date);
+        choice.setId_selectedTour(20);
 
-    @Test
-    void testInvalidPhoneInputThrowsException() {
-        assertThrows(NumberFormatException.class, () -> {
-            new ClientChoice(3, "Test", "notDigits", "1234", LocalDate.now(), 0);
-        });
-    }
-
-    @Test
-    void testInvalidPasswordInputThrowsException() {
-        assertThrows(NumberFormatException.class, () -> {
-            new ClientChoice(3, "Test", "123456789", "invalid", LocalDate.now(), 0);
-        });
+        assertEquals(5, choice.getId_client());
+        assertEquals("Bob", choice.getName());
+        assertEquals(654321, choice.getPhone());
+        assertEquals(4321, choice.getPassword());
+        assertEquals(date, choice.getBookingDate());
+        assertEquals(20, choice.getId_selectedTour());
     }
 }

@@ -13,4 +13,6 @@ module tourist_vouchers.v17_tourist_vouchers {
     opens tourist_vouchers.v17_tourist_vouchers.model to javafx.base;
     exports tourist_vouchers.v17_tourist_vouchers;
     exports tourist_vouchers.v17_tourist_vouchers.controller;
+    exports tourist_vouchers.v17_tourist_vouchers.dao;
+    opens tourist_vouchers.v17_tourist_vouchers.dao to javafx.fxml;
 }

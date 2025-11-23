@@ -9,8 +9,10 @@ import tourist_vouchers.v17_tourist_vouchers.util.DBConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class TourPackageDAO {
+    private static final Logger logger = Logger.getLogger(TourPackageDAO.class.getName());
     public List<TourPackage> getAllTours() throws SQLException {
         List<TourPackage> tours = new ArrayList<>();
         String sql = "SELECT * FROM tour";
@@ -34,30 +36,6 @@ public class TourPackageDAO {
             }
         }
         return tours;
-    }
-
-    public TourPackage getTourById(int id) throws SQLException {
-        String sql = "SELECT * FROM tour WHERE tour_id = ?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                return new TourPackage(
-                        rs.getInt("tour_id"),
-                        rs.getString("title"),
-                        rs.getString("destination"),
-                        rs.getDouble("price"),
-                        rs.getInt("days"),
-                        TransportType.valueOf(rs.getString("transport")),
-                        FoodType.valueOf(rs.getString("food_type")),
-                        TourType.valueOf(rs.getString("tour_type"))
-                );
-            }
-        }
-        return null;
     }
 
     public void addTour(TourPackage tour) throws SQLException {
@@ -128,5 +106,38 @@ public class TourPackageDAO {
             }
         }
         return destinations;
+    }
+
+    public TourPackage getTourById(int tourId) {
+        String sql = "SELECT * FROM tour WHERE tour_id = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, tourId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                TourPackage tour = new TourPackage();
+                tour.setId(rs.getInt("tour_id"));
+                tour.setTitle(rs.getString("title"));
+                tour.setDestination(rs.getString("destination"));
+                tour.setPrice(rs.getDouble("price"));
+                tour.setDays(rs.getInt("days"));
+
+                try {
+                    tour.setTransport(TransportType.valueOf(rs.getString("transport")));
+                    tour.setFoodType(FoodType.valueOf(rs.getString("food_type")));
+                    tour.setTourType(TourType.valueOf(rs.getString("tour_type")));
+                } catch (IllegalArgumentException e) {
+                    logger.warning("Помилка парсингу enum'ів для туру ID: " + tour.getId());
+                }
+
+                return tour;
+            }
+        } catch (SQLException e) {
+            logger.severe("Помилка отримання туру за ID: " + e.getMessage());
+        }
+        return null;
     }
 }
