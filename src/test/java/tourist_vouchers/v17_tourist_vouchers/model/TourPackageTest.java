@@ -6,48 +6,54 @@ import static org.junit.jupiter.api.Assertions.*;
 class TourPackageTest {
 
     @Test
-    void testConstructorAndGetters() {
+    void testDefaultConstructor() {
+        TourPackage tour = new TourPackage();
+        assertNotNull(tour);
+    }
+
+    @Test
+    void testFullConstructor() {
         TourPackage tour = new TourPackage(
                 1,
-                "Мальовниче Закарпаття",
-                "Ужгород",
-                3499.99,
-                5,
+                "Holiday Special",
+                "Paris",
+                1200.5,
+                7,
                 TransportType.BUS,
-                FoodType.FULL_BOARD,
+                FoodType.ALL_INCLUSIVE,
                 TourType.EXCURSION
         );
 
         assertEquals(1, tour.getId());
-        assertEquals("Мальовниче Закарпаття", tour.getTitle());
-        assertEquals("Ужгород", tour.getDestination());
-        assertEquals(3499.99, tour.getPrice());
-        assertEquals(5, tour.getDays());
+        assertEquals("Holiday Special", tour.getTitle());
+        assertEquals("Paris", tour.getDestination());
+        assertEquals(1200.5, tour.getPrice());
+        assertEquals(7, tour.getDays());
         assertEquals(TransportType.BUS, tour.getTransport());
-        assertEquals(FoodType.FULL_BOARD, tour.getFoodType());
+        assertEquals(FoodType.ALL_INCLUSIVE, tour.getFoodType());
         assertEquals(TourType.EXCURSION, tour.getTourType());
     }
 
     @Test
-    void testSetters() {
-        TourPackage tour = new TourPackage(0, "", "", 0.0, 0, null, null, null);
+    void testSettersAndGetters() {
+        TourPackage tour = new TourPackage();
 
-        tour.setId(2);
-        tour.setTitle("Карпати весною");
-        tour.setDestination("Яремче");
-        tour.setPrice(2750.50);
-        tour.setDays(4);
-        tour.setTransport(TransportType.TRAIN);
+        tour.setId(10);
+        tour.setTitle("Winter Trip");
+        tour.setDestination("Rome");
+        tour.setPrice(999.99);
+        tour.setDays(5);
+        tour.setTransport(TransportType.PLANE);
         tour.setFoodType(FoodType.BREAKFAST_ONLY);
-        tour.setTourType(TourType.REST);
+        tour.setTourType(TourType.CRUISE);
 
-        assertEquals(2, tour.getId());
-        assertEquals("Карпати весною", tour.getTitle());
-        assertEquals("Яремче", tour.getDestination());
-        assertEquals(2750.50, tour.getPrice());
-        assertEquals(4, tour.getDays());
-        assertEquals(TransportType.TRAIN, tour.getTransport());
+        assertEquals(10, tour.getId());
+        assertEquals("Winter Trip", tour.getTitle());
+        assertEquals("Rome", tour.getDestination());
+        assertEquals(999.99, tour.getPrice());
+        assertEquals(5, tour.getDays());
+        assertEquals(TransportType.PLANE, tour.getTransport());
         assertEquals(FoodType.BREAKFAST_ONLY, tour.getFoodType());
-        assertEquals(TourType.REST, tour.getTourType());
+        assertEquals(TourType.CRUISE, tour.getTourType());
     }
 }

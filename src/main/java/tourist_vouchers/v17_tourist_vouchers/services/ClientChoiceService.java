@@ -2,6 +2,7 @@ package tourist_vouchers.v17_tourist_vouchers.services;
 
 import tourist_vouchers.v17_tourist_vouchers.dao.ClientChoiceDAO;
 import tourist_vouchers.v17_tourist_vouchers.model.ClientChoice;
+import tourist_vouchers.v17_tourist_vouchers.model.TourPackage;
 
 import java.util.List;
 
@@ -12,27 +13,9 @@ public class ClientChoiceService {
         this.dao = new ClientChoiceDAO();
     }
 
+    // додатковий конструктор для тестів
     public ClientChoiceService(ClientChoiceDAO dao) {
         this.dao = dao;
-    }
-
-    public boolean registerClient(String name, String phone, String password) {
-        try {
-            int phoneNum = Integer.parseInt(phone);
-            int passwordNum = Integer.parseInt(password);
-            return dao.register(name, phoneNum, passwordNum);
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
-    public ClientChoice loginClient(String name, String password) {
-        try {
-            int passwordNum = Integer.parseInt(password);
-            return dao.login(name, passwordNum);
-        } catch (NumberFormatException e) {
-            return null;
-        }
     }
 
     public boolean bookTour(int clientId, int tourId) {
@@ -46,5 +29,11 @@ public class ClientChoiceService {
     public List<ClientChoice> getClientsWithTours() {
         return dao.getClientsWithTour();
     }
+
+    public TourPackage getBookedTour(int clientId) {
+        return dao.getBookedTour(clientId);
+    }
+
+
 }
 

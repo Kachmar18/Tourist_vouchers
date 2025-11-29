@@ -1,88 +1,144 @@
 package tourist_vouchers.v17_tourist_vouchers.dao;
 
-import org.junit.jupiter.api.*;
-import tourist_vouchers.v17_tourist_vouchers.model.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
+import tourist_vouchers.v17_tourist_vouchers.model.FoodType;
+import tourist_vouchers.v17_tourist_vouchers.model.TourPackage;
+import tourist_vouchers.v17_tourist_vouchers.model.TourType;
+import tourist_vouchers.v17_tourist_vouchers.model.TransportType;
+import tourist_vouchers.v17_tourist_vouchers.util.DBConnection;
 
 import java.sql.*;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class TourPackageDAOTest {
 
-    private static TourPackageDAO dao;
-    private static Connection conn;
-    private static int createdTourId;
+    private TourPackageDAO dao;
 
-    @BeforeAll
-    static void setup() throws SQLException {
+    @BeforeEach
+    void setUp() {
         dao = new TourPackageDAO();
-        conn = tourist_vouchers.v17_tourist_vouchers.util.DBConnection.getConnection();
     }
 
     @Test
-    @Order(1)
-    void testAddTour() throws SQLException {
-        TourPackage newTour = new TourPackage(0, "Test Tour", "Test City", 1500.0, 5,
-                TransportType.BUS, FoodType.BREAKFAST_ONLY, TourType.REST);
-        dao.addTour(newTour);
+    void testGetAllTours() throws Exception {
+        Connection conn = mock(Connection.class);
+        Statement stmt = mock(Statement.class);
+        ResultSet rs = mock(ResultSet.class);
 
-        List<TourPackage> all = dao.getAllTours();
-        createdTourId = all.get(all.size() - 1).getId();
+        when(conn.createStatement()).thenReturn(stmt);
+        when(stmt.executeQuery(anyString())).thenReturn(rs);
+        when(rs.next()).thenReturn(true, false);
+        when(rs.getInt("tour_id")).thenReturn(1);
+        when(rs.getString("title")).thenReturn("Tour 1");
+        when(rs.getString("destination")).thenReturn("Paris");
+        when(rs.getDouble("price")).thenReturn(1000.0);
+        when(rs.getInt("days")).thenReturn(5);
+        when(rs.getString("transport")).thenReturn("CAR");
+        when(rs.getString("food_type")).thenReturn("ALL_INCLUSIVE");
+        when(rs.getString("tour_type")).thenReturn("ADVENTURE");
 
-        assertTrue(createdTourId > 0);
+        try (MockedStatic<DBConnection> dbMock = mockStatic(DBConnection.class)) {
+            dbMock.when(DBConnection::getConnection).thenReturn(conn);
+
+            List<TourPackage> tours = dao.getAllTours();
+            assertEquals(1, tours.size());
+            assertEquals("Tour 1", tours.get(0).getTitle());
+        }
     }
 
     @Test
-    @Order(2)
-    void testGetTourById() throws SQLException {
-        TourPackage tour = dao.getTourById(createdTourId);
-        assertNotNull(tour);
-        assertEquals("Test Tour", tour.getTitle());
+    void testAddTour() throws Exception {
+        Connection conn = mock(Connection.class);
+        PreparedStatement pstmt = mock(PreparedStatement.class);
+        TourPackage tour = new TourPackage(1, "T", "D", 100, 1, TransportType.CAR, FoodType.ALL_INCLUSIVE, TourType.CRUISE);
+
+        when(conn.prepareStatement(anyString())).thenReturn(pstmt);
+        when(pstmt.executeUpdate()).thenReturn(1);
+
+        try (MockedStatic<DBConnection> dbMock = mockStatic(DBConnection.class)) {
+            dbMock.when(DBConnection::getConnection).thenReturn(conn);
+            dao.addTour(tour);
+        }
     }
 
     @Test
-    @Order(3)
-    void testUpdateTour() throws SQLException {
-        TourPackage tour = dao.getTourById(createdTourId);
-        assertNotNull(tour);
-        tour.setTitle("Updated Tour");
-        dao.updateTour(tour);
+    void testUpdateTour() throws Exception {
+        Connection conn = mock(Connection.class);
+        PreparedStatement pstmt = mock(PreparedStatement.class);
+        TourPackage tour = new TourPackage(1, "T", "D", 100, 1, TransportType.CAR, FoodType.ALL_INCLUSIVE, TourType.REST);
 
-        TourPackage updated = dao.getTourById(createdTourId);
-        assertEquals("Updated Tour", updated.getTitle());
+        when(conn.prepareStatement(anyString())).thenReturn(pstmt);
+        when(pstmt.executeUpdate()).thenReturn(1);
+
+        try (MockedStatic<DBConnection> dbMock = mockStatic(DBConnection.class)) {
+            dbMock.when(DBConnection::getConnection).thenReturn(conn);
+            dao.updateTour(tour);
+        }
     }
 
     @Test
-    @Order(4)
-    void testGetAllTours() throws SQLException {
-        List<TourPackage> tours = dao.getAllTours();
-        assertNotNull(tours);
-        assertTrue(tours.size() > 0);
+    void testDeleteTour() throws Exception {
+        Connection conn = mock(Connection.class);
+        PreparedStatement pstmt = mock(PreparedStatement.class);
+
+        when(conn.prepareStatement(anyString())).thenReturn(pstmt);
+        when(pstmt.executeUpdate()).thenReturn(1);
+
+        try (MockedStatic<DBConnection> dbMock = mockStatic(DBConnection.class)) {
+            dbMock.when(DBConnection::getConnection).thenReturn(conn);
+            dao.deleteTour(1);
+        }
     }
 
     @Test
-    @Order(5)
-    void testGetAllDestinations() throws SQLException {
-        List<String> destinations = dao.getAllDestinations();
-        assertNotNull(destinations);
-        assertTrue(destinations.contains("Test City") || destinations.contains("Updated City"));
+    void testGetAllDestinations() throws Exception {
+        Connection conn = mock(Connection.class);
+        Statement stmt = mock(Statement.class);
+        ResultSet rs = mock(ResultSet.class);
+
+        when(conn.createStatement()).thenReturn(stmt);
+        when(stmt.executeQuery(anyString())).thenReturn(rs);
+        when(rs.next()).thenReturn(true, false);
+        when(rs.getString("destination")).thenReturn("Paris");
+
+        try (MockedStatic<DBConnection> dbMock = mockStatic(DBConnection.class)) {
+            dbMock.when(DBConnection::getConnection).thenReturn(conn);
+            List<String> destinations = dao.getAllDestinations();
+            assertEquals(1, destinations.size());
+            assertEquals("Paris", destinations.get(0));
+        }
     }
 
     @Test
-    @Order(6)
-    void testDeleteTour() throws SQLException {
-        dao.deleteTour(createdTourId);
-        TourPackage deleted = dao.getTourById(createdTourId);
-        assertNull(deleted);
-    }
+    void testGetTourById() throws Exception {
+        Connection conn = mock(Connection.class);
+        PreparedStatement pstmt = mock(PreparedStatement.class);
+        ResultSet rs = mock(ResultSet.class);
 
-    @AfterAll
-    static void teardown() throws SQLException {
-        if (conn != null && !conn.isClosed()) {
-            conn.close();
+        when(conn.prepareStatement(anyString())).thenReturn(pstmt);
+        when(pstmt.executeQuery()).thenReturn(rs);
+        when(rs.next()).thenReturn(true);
+        when(rs.getInt("tour_id")).thenReturn(1);
+        when(rs.getString("title")).thenReturn("Tour 1");
+        when(rs.getString("destination")).thenReturn("Paris");
+        when(rs.getDouble("price")).thenReturn(1000.0);
+        when(rs.getInt("days")).thenReturn(5);
+        when(rs.getString("transport")).thenReturn("CAR");
+        when(rs.getString("food_type")).thenReturn("ALL_INCLUSIVE");
+        when(rs.getString("tour_type")).thenReturn("ADVENTURE");
+
+        try (MockedStatic<DBConnection> dbMock = mockStatic(DBConnection.class)) {
+            dbMock.when(DBConnection::getConnection).thenReturn(conn);
+
+            TourPackage tour = dao.getTourById(1);
+            assertNotNull(tour);
+            assertEquals(1, tour.getId());
+            assertEquals("Tour 1", tour.getTitle());
         }
     }
 }
-

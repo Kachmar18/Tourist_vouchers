@@ -30,12 +30,7 @@ public class TourPackageService {
     }
 
     public TourPackage getTourById(int id) {
-        try {
-            return tourPackageDAO.getTourById(id);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return tourPackageDAO.getTourById(id);
     }
 
 
@@ -85,4 +80,5 @@ public class TourPackageService {
             throw new RuntimeException("Не вдалося видалити тур", e);
         }
     }
+
 }

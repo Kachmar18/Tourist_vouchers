@@ -4,51 +4,53 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ValidatorTest {
+class ValidatorTest {
 
     @Test
-    void testValidName() {
-        assertTrue(Validator.isValidName("Anna"));
-        assertFalse(Validator.isValidName("An"));
+    void testIsValidName() {
+        assertTrue(Validator.isValidName("Alice"));
         assertFalse(Validator.isValidName(null));
+        assertFalse(Validator.isValidName("Al"));
     }
 
     @Test
-    void testValidPhone() {
+    void testIsValidPhone() {
         assertTrue(Validator.isValidPhone("123456789"));
-        assertFalse(Validator.isValidPhone("12345"));
-        assertFalse(Validator.isValidPhone("abcdefgh"));
         assertFalse(Validator.isValidPhone(null));
+        assertFalse(Validator.isValidPhone("12345"));
+        assertFalse(Validator.isValidPhone("abcdefghi"));
     }
 
     @Test
-    void testValidPassword() {
-        assertTrue(Validator.isValidPassword("pass"));
-        assertFalse(Validator.isValidPassword("123"));
+    void testIsValidPassword() {
+        assertTrue(Validator.isValidPassword("pass123"));
         assertFalse(Validator.isValidPassword(null));
+        assertFalse(Validator.isValidPassword("123"));
     }
 
     @Test
-    void testValidDestination() {
-        assertTrue(Validator.isValidDestination("Kyiv"));
-        assertFalse(Validator.isValidDestination("K"));
+    void testIsValidDestination() {
+        assertTrue(Validator.isValidDestination("Paris"));
         assertFalse(Validator.isValidDestination(null));
+        assertFalse(Validator.isValidDestination("Pa"));
     }
 
     @Test
-    void testValidPrice() {
-        assertTrue(Validator.isValidPrice("100.5"));
-        assertFalse(Validator.isValidPrice("-5"));
-        assertFalse(Validator.isValidPrice("abc"));
+    void testIsValidPrice() {
+        assertTrue(Validator.isValidPrice("100"));
+        assertTrue(Validator.isValidPrice(" 50.5 "));
         assertFalse(Validator.isValidPrice(null));
+        assertFalse(Validator.isValidPrice("-10"));
+        assertFalse(Validator.isValidPrice("abc"));
     }
 
     @Test
-    void testValidDays() {
-        assertTrue(Validator.isValidDays("10"));
-        assertFalse(Validator.isValidDays("0"));
-        assertFalse(Validator.isValidDays("-2"));
-        assertFalse(Validator.isValidDays("abc"));
+    void testIsValidDays() {
+        assertTrue(Validator.isValidDays("5"));
+        assertTrue(Validator.isValidDays(" 10 "));
         assertFalse(Validator.isValidDays(null));
+        assertFalse(Validator.isValidDays("0"));
+        assertFalse(Validator.isValidDays("-3"));
+        assertFalse(Validator.isValidDays("abc"));
     }
 }

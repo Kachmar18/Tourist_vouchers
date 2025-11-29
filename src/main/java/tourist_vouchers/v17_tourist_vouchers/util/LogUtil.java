@@ -11,13 +11,11 @@ public class LogUtil {
             LogManager.getLogManager().reset();
             logger.setLevel(Level.ALL);
 
-            // Лог у файл
             FileHandler fileHandler = new FileHandler("tour_app.log", true);
             fileHandler.setLevel(Level.ALL);
             fileHandler.setFormatter(new SimpleFormatter());
             logger.addHandler(fileHandler);
 
-            // Консоль (опціонально)
             ConsoleHandler consoleHandler = new ConsoleHandler();
             consoleHandler.setLevel(Level.INFO);
             logger.addHandler(consoleHandler);
