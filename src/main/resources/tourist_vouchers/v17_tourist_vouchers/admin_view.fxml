@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 
 <VBox fx:id="rootPane" alignment="TOP_CENTER" prefHeight="650.0" prefWidth="1000.0" spacing="20.0" style="-fx-background-color: #dcf5fb;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tourist_vouchers.v17_tourist_vouchers.controller.AdminController">
    <MenuBar>
@@ -42,9 +43,9 @@
       <TextField fx:id="txtDays" layoutX="580.0" layoutY="56.0" prefHeight="34.0" prefWidth="184.0" />
       <TextField fx:id="txtPrice" layoutX="580.0" layoutY="103.0" prefHeight="37.0" prefWidth="184.0" />
       <Label layoutX="8.0" layoutY="166.0" prefHeight="25.0" prefWidth="345.0" text="Пошук за ключовим словом" />
-      <TextField fx:id="txtKeyWord" layoutX="322.0" layoutY="160.0" onAction="#onSearchByKeyword" prefHeight="37.0" prefWidth="444.0" promptText="Пошук за ключовим словом" />
+      <TextField fx:id="txtKeyWord" layoutX="262.0" layoutY="160.0" onAction="#onSearchByKeyword" prefHeight="37.0" prefWidth="502.0" promptText="Пошук за ключовим словом" />
    </Pane>
-   <TableView fx:id="tblTours" prefHeight="258.0" prefWidth="1000.0">
+   <TableView fx:id="tblTours" prefHeight="234.0" prefWidth="1003.0">
       <columns>
          <TableColumn fx:id="titleCol" prefWidth="75.0" text="Назва" />
          <TableColumn fx:id="destinationCol" prefWidth="75.0" text="Призначення" />
@@ -58,21 +59,36 @@
          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
       </columnResizePolicy>
    </TableView>
-   <HBox alignment="TOP_CENTER" prefHeight="37.0" prefWidth="800.0" spacing="60.0">
-      <opaqueInsets>
-         <Insets />
-      </opaqueInsets>
+   <VBox prefHeight="59.0" prefWidth="1003.0" spacing="10.0">
       <children>
-         <Label prefHeight="25.0" prefWidth="160.0" text="Вибрати клієнта" />
-         <ComboBox fx:id="cmbClients" onAction="#handleClientSelection" prefHeight="38.0" prefWidth="184.0" />
+         <HBox prefHeight="37.0" prefWidth="800.0" spacing="100.0">
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+            <children>
+               <Label prefHeight="25.0" prefWidth="160.0" text="Вибрати клієнта">
+                  <padding>
+                     <Insets top="5.0" />
+                  </padding>
+               </Label>
+               <ComboBox fx:id="cmbClients" onAction="#handleClientSelection" prefHeight="38.0" prefWidth="660.0" />
+            </children>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+            <padding>
+               <Insets left="50.0" />
+            </padding>
+         </HBox>
+         <Line endX="900.2786865234375" endY="-9.192386627197266" startX="-101.41424560546875" startY="-7.778173446655273" VBox.vgrow="NEVER" />
       </children>
-   </HBox>
+   </VBox>
    <HBox alignment="TOP_CENTER" prefHeight="37.0" prefWidth="800.0" spacing="60.0">
       <opaqueInsets>
          <Insets />
       </opaqueInsets>
       <VBox.margin>
-         <Insets bottom="10.0" />
+         <Insets bottom="20.0" />
       </VBox.margin>
       <Button mnemonicParsing="false" onAction="#handleBtnClearSelectedTour" style="-fx-background-color: #d56839; -fx-font-size: 17;" text="Скасувати бронювання">
          <HBox.margin>

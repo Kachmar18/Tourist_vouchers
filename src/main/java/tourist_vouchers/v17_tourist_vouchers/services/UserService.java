@@ -98,5 +98,4 @@ public class UserService {
     public List<Client> getAllClients() {
         return userDAO.getAllClients();
     }
-
 }

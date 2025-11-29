@@ -2,23 +2,32 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="650.0" maxWidth="1000.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #dcf5fb;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tourist_vouchers.v17_tourist_vouchers.controller.InfoViewController">
 
-   <Label layoutX="350.0" layoutY="14.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Тема роботи: Туристичні путівки" />
+   <Label layoutX="141.0" layoutY="14.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Тема роботи: Система управління туристичними путівками «Tourist Vouchers» " />
 
    <Label layoutX="50.0" layoutY="60.0" style="-fx-font-size: 18px; -fx-font-style: italic;" text="Мета програми: Оптимальний вибір туристичної путівки" />
 
-   <Text layoutX="45.0" layoutY="130.0" style="-fx-font-size: 17px;" text="Основні класи, реалізовані у програмі:&#10;• TourPackage&#10;• ClientChoice&#10;• Перерахування (enum-и): TourType, TransportType, FoodType" wrappingWidth="934.9324226379395" />
+   <Text layoutX="50.0" layoutY="117.0" style="-fx-font-size: 17px;" text="Основний функціонал системи включає:&#10;• реєстрацію та автентифікацію клієнтів та адміністраторів;&#10;• пошук, фільтрацію та перегляд туристичних турпакетів;&#10;• створення та скасування бронювань;&#10;• адміністрування каталогу турів;&#10;• формування звітів і експорт у формат Excel." wrappingWidth="426.1324653625488" />
 
-   <Text layoutX="45.0" layoutY="229.0" style="-fx-font-size: 17px;" text="Основні можливості програми:&#10;• Перегляд, фільтрація, сортування турів&#10;• Бронювання туру клієнтом&#10;• Збереження даних у базі&#10;• Робота з деталями туру" wrappingWidth="934.9324226379395" />
+   <Text layoutX="530.0" layoutY="117.0" style="-fx-font-size: 17px;" text="Технічна реалізація:&#10;• Мова програмування: Java 17+&#10;• Графічний інтерфейс: JavaFX&#10;• База даних: MySQL 8.0+&#10;• Архітектура: MVC&#10;• Збірка: Maven&#10;• Звітність: Apache POI&#10;• Логування: Java Util Logging&#10;• Електронна пошта: JavaMail API&#10;• Захист даних: хешування паролів, підготовлені SQL-запити" wrappingWidth="426.1324653625489" />
 
-   <Text layoutX="45.0" layoutY="359.0" style="-fx-font-size: 17px;" text="Технічна реалізація: &#10;• Програма реалізована на Java з використанням JavaFX &#10;• Дані зберігаються у базі MySQL&#10;• Забезпечено юніт-тести з покриттям &gt;90%" wrappingWidth="934.9324226379395" />
+   <Text layoutX="45.0" layoutY="325.0" style="-fx-font-size: 17px;" text="Основні модулі системи: &#10;• Модуль автентифікації та ролей (клієнт / адміністратор)&#10;• Модуль управління турпакетами&#10;• Модуль бронювання&#10;• Модуль адміністрування користувачів&#10;• Модуль формування звітів" wrappingWidth="435.7324104309082" />
 
    <Text layoutX="649.0" layoutY="490.0" style="-fx-font-size: 18; -fx-text-alignment: right;" text="Розробили&#10;студентки групи КНС-21&#10;Грошова Софія та Качмар Богдана" wrappingWidth="323.20000000000005" />
 
-   <Button layoutX="14.0" layoutY="583.0" mnemonicParsing="false" onAction="#handleGoBack" prefHeight="41.0" prefWidth="282.0" text="Повернутись назад" />
+   <Button layoutX="14.0" layoutY="583.0" mnemonicParsing="false" onAction="#handleGoBack" prefHeight="41.0" prefWidth="282.0" text="Повернутись назад">
+      <graphic>
+         <ImageView fitHeight="25.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@Icons/Return_icon.png" />
+            </image>
+         </ImageView>
+      </graphic></Button>
 
 </AnchorPane>

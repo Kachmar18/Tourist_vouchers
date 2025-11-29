@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -11,36 +12,61 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #dcf5fb;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tourist_vouchers.v17_tourist_vouchers.controller.LoginController">
-   <Button layoutX="14.0" layoutY="594.0" mnemonicParsing="false" onAction="#handleInfoApp" prefHeight="41.0" prefWidth="169.0" text="Про програму" />
+   <Button layoutX="14.0" layoutY="594.0" mnemonicParsing="false" onAction="#handleInfoApp" prefHeight="41.0" prefWidth="169.0" text="Про програму">
+      <graphic>
+          <ImageView fitHeight="77.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+              <Image url="@Icons/info_icon.png"/>
+          </ImageView>
+      </graphic></Button>
 
-      <Pane fx:id="logInPane" layoutX="-1.0" layoutY="75.0" prefHeight="481.0" prefWidth="994.0" visible="false">
-      <Label layoutX="492.0" layoutY="25.0" styleClass="header-label" text="Авторизація">
+      <Pane fx:id="logInPane" layoutX="-1.0" layoutY="75.0" prefHeight="481.0" prefWidth="994.0">
+      <Label layoutX="421.0" layoutY="14.0" style="-fx-font-size: 25;" styleClass="header-label" text="Авторизація">
          <font>
             <Font size="42.0" />
          </font></Label>
       <TextField fx:id="txtUsername" layoutX="422.0" layoutY="125.0" prefHeight="38.0" prefWidth="546.0" />
       <PasswordField fx:id="txtPassword" layoutX="422.0" layoutY="197.0" prefHeight="38.0" prefWidth="546.0" />
       <Label layoutX="53.0" layoutY="129.0" prefHeight="30.0" prefWidth="346.0" text="Введіть ім'я" />
-      <Label layoutX="53.0" layoutY="204.0" prefHeight="25.0" prefWidth="346.0" text="Введіть прізвище" />
-      <Button layoutX="541.0" layoutY="379.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="57.0" prefWidth="427.0" text="Увійти" />
-      <Button layoutX="13.0" layoutY="379.0" onAction="#switchToSignUpPane" prefHeight="57.0" prefWidth="427.0" text="Зареєструватися" />
+      <Label layoutX="53.0" layoutY="204.0" prefHeight="25.0" prefWidth="346.0" text="Введіть пароль" />
+      <Button contentDisplay="RIGHT" layoutX="448.0" layoutY="379.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="57.0" prefWidth="530.0" text="Увійти">
+         <graphic>
+             <ImageView fitHeight="41.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                 <Image url="@Icons/enter.png"/>
+             </ImageView>
+         </graphic></Button>
+      <Button contentDisplay="RIGHT" layoutX="13.0" layoutY="379.0" onAction="#switchToSignUpPane" prefHeight="57.0" prefWidth="370.0" text="Зареєструватися">
+         <graphic>
+             <ImageView fitHeight="33.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                 <Image url="@Icons/edit.png"/>
+             </ImageView>
+         </graphic></Button>
    </Pane>
 
-   <Pane fx:id="signUpPane" layoutY="67.0" prefHeight="482.0" prefWidth="994.0">
-       <Label layoutX="363.0" layoutY="14.0" prefHeight="25.0" prefWidth="308.0" text="Створення нового акаунта">
+   <Pane fx:id="signUpPane" layoutY="67.0" prefHeight="482.0" prefWidth="994.0" visible="false">
+       <Label layoutX="328.0" layoutY="14.0" prefHeight="36.0" prefWidth="339.0" style="-fx-font-size: 25;" styleClass="header-label" text="Створення нового акаунта">
          <font>
-            <Font size="18.0" />
+            <Font size="45.0" />
          </font></Label>
      <TextField fx:id="txtUsernameSignUp" layoutX="436.0" layoutY="78.0" prefHeight="37.0" prefWidth="529.0" />
-      <PasswordField fx:id="txtPasswordSignUp" layoutX="436.0" layoutY="234.0" prefHeight="37.0" prefWidth="529.0" />
-      <Label layoutX="50.0" layoutY="84.0" prefHeight="25.0" prefWidth="236.0" text="Введіть ім'я" />
-      <Label layoutX="50.0" layoutY="240.0" prefHeight="25.0" prefWidth="300.0" text="Введіть пароль" />
-      <Label layoutX="50.0" layoutY="162.0" prefHeight="25.0" prefWidth="294.0" text="Введіть номер телефону" />
-      <TextField fx:id="txtPhone" layoutX="436.0" layoutY="156.0" prefHeight="37.0" prefWidth="529.0" />
-      <Button layoutX="445.0" layoutY="387.0" mnemonicParsing="false" onAction="#handleCreateAccount" prefHeight="57.0" prefWidth="529.0" text="Створити акаунт" />
-      <Button layoutX="22.0" layoutY="387.0" onAction="#switchToLoginPane" prefHeight="57.0" prefWidth="356.0" text="Уже маєш акаунт? Увійти" textAlignment="CENTER" wrapText="true" />
+      <PasswordField fx:id="txtPasswordSignUp" layoutX="436.0" layoutY="229.0" prefHeight="37.0" prefWidth="529.0" />
+      <Label layoutX="50.0" layoutY="84.0" prefHeight="25.0" prefWidth="236.0" text="Введіть ПІБ" />
+      <Label layoutX="50.0" layoutY="235.0" prefHeight="25.0" prefWidth="300.0" text="Введіть пароль" />
+      <Label layoutX="50.0" layoutY="156.0" prefHeight="25.0" prefWidth="294.0" text="Введіть номер телефону" />
+      <TextField fx:id="txtPhone" layoutX="436.0" layoutY="150.0" prefHeight="37.0" prefWidth="529.0" />
+      <Button contentDisplay="RIGHT" layoutX="445.0" layoutY="387.0" mnemonicParsing="false" onAction="#handleCreateAccount" prefHeight="57.0" prefWidth="530.0" text="Створити акаунт">
+         <graphic>
+             <ImageView fitHeight="33.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                 <Image url="@Icons/edit.png"/>
+             </ImageView>
+         </graphic></Button>
+      <Button contentDisplay="RIGHT" layoutX="22.0" layoutY="387.0" onAction="#switchToLoginPane" prefHeight="57.0" prefWidth="370.0" text="Уже маєш акаунт? Увійти" textAlignment="CENTER" wrapText="true">
+         <graphic>
+             <ImageView fitHeight="41.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                 <Image url="@Icons/enter.png"/>
+             </ImageView>
+         </graphic></Button>
       <VBox alignment="CENTER" layoutX="50" layoutY="80" prefWidth="300" spacing="10" />
-      <Label fx:id="lblSpecialPassword" layoutX="50.0" layoutY="305.0" prefHeight="25.0" prefWidth="300.0" text="Спеціальних вхід" />
+      <Label fx:id="lblSpecialPassword" layoutX="50.0" layoutY="305.0" prefHeight="25.0" prefWidth="300.0" text="Пароль-запрошення" />
       <PasswordField fx:id="txtSpecialPassword" layoutX="436.0" layoutY="299.0" prefHeight="37.0" prefWidth="529.0" />
    </Pane>
    <Button fx:id="btnUserType" graphicTextGap="1.0" layoutX="780.0" layoutY="14.0" mnemonicParsing="false" onAction="#changeTypeUser" prefHeight="42.0" prefWidth="205.0" text="Користувач">

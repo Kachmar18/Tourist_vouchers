@@ -36,7 +36,7 @@
       <TextField fx:id="txtDays" layoutX="580.0" layoutY="56.0" prefHeight="34.0" prefWidth="184.0" />
       <TextField fx:id="txtPrice" layoutX="580.0" layoutY="103.0" prefHeight="37.0" prefWidth="184.0" />
       <Label layoutX="8.0" layoutY="166.0" prefHeight="25.0" prefWidth="345.0" text="Пошук за ключовим словом" />
-      <TextField fx:id="txtKeyWord" layoutX="322.0" layoutY="160.0" onAction="#onSearchByKeyword" prefHeight="37.0" prefWidth="444.0" promptText="Пошук за ключовим словом" />
+      <TextField fx:id="txtKeyWord" layoutX="278.0" layoutY="160.0" onAction="#onSearchByKeyword" prefHeight="37.0" prefWidth="485.0" promptText="Пошук за ключовим словом" />
    </Pane>
    <TableView fx:id="tblTours" prefHeight="310.0" prefWidth="1000.0">
       <columns>
